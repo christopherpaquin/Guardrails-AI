@@ -9,9 +9,56 @@
 This repository provides optimized configurations for **10+ AI coding assistants**. Each tool receives a configuration
 in its native format, all derived from our canonical standards in `CONTEXT.md`.
 
+Additionally, we support **AGENTS.md** - an open format for workflow instructions inspired by
+[agents.md](https://agents.md). While tool-specific configs provide standards enforcement, AGENTS.md
+provides project-specific workflow guidance.
+
 ---
 
-## ✅ Fully Supported Tools
+## ✅ Universal Formats
+
+### AGENTS.md
+
+**Configuration**: `AGENTS.md` (root level)
+
+**Format**: Markdown with workflow instructions
+
+**Purpose**: Project-specific workflow guidance for AI agents
+
+**Features**:
+- Inspired by the [agents.md](https://agents.md) open format (17.1k+ stars)
+- Complements tool-specific configs with workflow instructions
+- Answers "How do I work on THIS project?"
+- Not tool-specific - works with any AI coding agent
+
+**Content**:
+- Development environment setup
+- Testing instructions
+- Common development tasks
+- Git workflow and commit format
+- PR process and checklist
+- Project-specific guidelines
+- Debugging and troubleshooting
+- Useful commands reference
+
+**How to use**:
+1. Copy `template/AGENTS.md.template` to your project root as `AGENTS.md`
+2. Customize for your specific project:
+   - Replace [bracketed placeholders]
+   - Add your tech stack and commands
+   - Document your workflows
+   - Add project-specific sections
+3. Keep it updated as your project evolves
+4. AI agents read it alongside tool-specific configs
+
+**Relationship to other files**:
+- **AGENTS.md** = "How to work on THIS project" (workflow)
+- **CONTEXT.md** = "Standards to follow ALWAYS" (rules)
+- **Tool configs** = Tool-specific implementations of standards
+
+---
+
+## ✅ Tool-Specific Configurations
 
 ### Cursor
 

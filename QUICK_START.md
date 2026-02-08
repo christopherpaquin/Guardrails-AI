@@ -39,10 +39,12 @@ cd your-project
 git clone https://github.com/YOUR_USERNAME/Guardrails-AI.git .ai-guardrails
 
 # Copy AI context files
+cp .ai-guardrails/AGENTS.md .
+cp .ai-guardrails/CONTEXT.md .
+cp .ai-guardrails/CONTRIBUTING.md .
 cp -r .ai-guardrails/.cursor .
 cp .ai-guardrails/CLAUDE.md .
 cp .ai-guardrails/.claudeprompt .
-cp .ai-guardrails/CONTRIBUTING.md .
 cp -r .ai-guardrails/.continue .
 cp .ai-guardrails/.windsurfignore .
 cp -r .ai-guardrails/.vscode .
@@ -134,6 +136,12 @@ git commit -m "password=test123"
 ## ✅ What You Get
 
 ### AI Context Files
+
+- **AGENTS.md**: Workflow instructions for AI agents (commands, testing, PRs)
+- **CONTEXT.md**: Universal standards (security, quality, documentation)
+- **CONTRIBUTING.md**: Contribution guidelines for humans and AI
+
+**Tool-specific configurations:**
 
 - **Cursor**: 8 scoped `.mdc` rules with priorities
 - **Claude**: Comprehensive instructions in `CLAUDE.md`
