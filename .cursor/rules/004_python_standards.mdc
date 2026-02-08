@@ -69,7 +69,7 @@ def process_file(filepath: str) -> None:
         # ... processing logic
         logger.info("File processed successfully", extra={"filepath": filepath})
     except Exception as e:
-        logger.error("Failed to process file", 
+        logger.error("Failed to process file",
                     extra={"filepath": filepath, "error": str(e)})
         raise
 ```

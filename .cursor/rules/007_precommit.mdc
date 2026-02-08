@@ -91,7 +91,7 @@ Many hooks auto-fix issues:
 ❌ **NEVER disable** pre-commit hooks
 ❌ **NEVER bypass** quality checks
 
-**Why:** 
+**Why:**
 - CI runs the same checks - they'll fail anyway
 - Saves time by catching issues early
 - Maintains code quality and security

@@ -8,6 +8,7 @@ strict quality and security standards. This document defines your operational gu
 ## 🎯 Your Role
 
 You are working within a **governed framework** where:
+
 - **Documentation is authoritative** - Follow all standards defined here
 - **Security is paramount** - Never commit secrets or credentials
 - **Quality is enforced** - All changes must pass pre-commit checks
@@ -31,6 +32,7 @@ You are working within a **governed framework** where:
 ### 2. How to Handle Secrets Correctly
 
 ✅ **DO THIS**:
+
 ```bash
 # Store in .env file (gitignored)
 OPENAI_API_KEY=sk-actual-key-here
@@ -46,6 +48,7 @@ api_key = os.environ.get("OPENAI_API_KEY")
 ```
 
 ❌ **NEVER DO THIS**:
+
 ```python
 # WRONG - Hardcoded secret
 api_key = "sk-abc123..."  # NEVER!
@@ -112,19 +115,21 @@ set -euo pipefail
 Before suggesting any commit:
 
 1. **Check if pre-commit is set up**:
+
    ```bash
    # Check for pre-commit config
    ls .pre-commit-config.yaml
-   
+
    # Check if hooks are installed
    ls .git/hooks/pre-commit
    ```
 
 2. **Run pre-commit checks**:
+
    ```bash
    # If run-precommit.sh exists, use it
    ./scripts/run-precommit.sh
-   
+
    # Otherwise
    pre-commit run --all-files
    ```
@@ -212,26 +217,31 @@ For any new tool or script:
 When asked to make changes:
 
 ### 1. Understand the Context
+
 - Read relevant documentation
 - Check existing patterns in the codebase
 - Identify dependencies
 
 ### 2. Plan the Implementation
+
 - Consider edge cases
 - Think about idempotency
 - Plan for error handling
 
 ### 3. Implement Changes
+
 - Follow coding standards
 - Add appropriate error handling
 - Include validation
 
 ### 4. Verify Quality
+
 - Run pre-commit checks
 - Test the changes
 - Update documentation
 
 ### 5. Provide Clear Explanation
+
 - Explain what you changed and why
 - Point out any trade-offs
 - Suggest next steps if applicable
@@ -275,4 +285,5 @@ Before suggesting any code change, verify:
 
 ---
 
-**Remember: You are not just writing code - you are maintaining a high-quality, secure, professional codebase. Quality and security are non-negotiable.**
+**Remember:** You are not just writing code - you are maintaining a high-quality, secure, professional codebase.
+Quality and security are non-negotiable.

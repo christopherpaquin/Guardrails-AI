@@ -21,38 +21,49 @@ Complete guide for using AI Guardrails in your projects.
 Best for ongoing updates and maintenance:
 
 ```bash
+
 # Add as submodule
+
 cd your-project
 git submodule add https://github.com/your-org/Guardrails-AI .ai-guardrails
 
 # Initialize submodule
+
 git submodule update --init --recursive
 
 # Create symlinks
+
 ln -s .ai-guardrails/.cursor .cursor
 ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ln -s .ai-guardrails/CONTRIBUTING.md CONTRIBUTING.md
 
 # Commit the submodule
+
 git add .gitmodules .ai-guardrails .cursor CLAUDE.md CONTRIBUTING.md
 git commit -m "Add AI guardrails"
-```
 
+```text
 **Updating:**
-```bash
-# Pull latest guardrail updates
-git submodule update --remote .ai-guardrails
-```
 
+```bash
+
+# Pull latest guardrail updates
+
+git submodule update --remote .ai-guardrails
+
+```text
 ### Method 2: Direct Copy
 
 Best for one-time setup or customization:
 
 ```bash
+
 # Clone guardrails
+
 git clone https://github.com/your-org/Guardrails-AI /tmp/guardrails
 
 # Copy files to your project
+
 cd your-project
 cp -r /tmp/guardrails/.cursor .
 cp /tmp/guardrails/CLAUDE.md .
@@ -61,29 +72,35 @@ cp /tmp/guardrails/.claudeprompt .
 cp -r /tmp/guardrails/.github/copilot-instructions.md .github/
 
 # Cleanup
+
 rm -rf /tmp/guardrails
 
 # Commit
+
 git add .cursor CLAUDE.md CONTRIBUTING.md .claudeprompt .github
 git commit -m "Add AI guardrails"
-```
 
+```text
 ### Method 3: Selective Files
 
 Copy only what you need:
 
 ```bash
+
 # For Cursor only
+
 cp -r /path/to/guardrails/.cursor your-project/
 
 # For Claude only
+
 cp /path/to/guardrails/CLAUDE.md your-project/
 cp /path/to/guardrails/.claudeprompt your-project/
 
 # For GitHub Copilot only
-cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
-```
 
+cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
+
+```text
 ---
 
 ## 🤖 Per-Tool Setup
@@ -91,10 +108,11 @@ cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 ### Cursor Setup
 
 1. **Copy rules:**
+
    ```bash
    cp -r .ai-guardrails/.cursor .
-   ```
 
+   ```text
 2. **Verify in Cursor:**
    - Open Cursor IDE
    - Check: Settings → Cursor Settings → Rules
@@ -108,15 +126,17 @@ cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 ### Claude Desktop Setup
 
 1. **Copy instructions:**
+
    ```bash
    cp .ai-guardrails/CLAUDE.md .
-   ```
 
+   ```text
 2. **Reference in conversations:**
-   ```
-   Please follow the standards in CLAUDE.md when making changes.
-   ```
 
+   ```text
+   Please follow the standards in CLAUDE.md when making changes.
+
+   ```text
 3. **Claude will:**
    - Read CLAUDE.md automatically (if in project root)
    - Follow security guardrails
@@ -125,10 +145,11 @@ cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 ### Claude Projects Setup
 
 1. **Copy prompt file:**
+
    ```bash
    cp .ai-guardrails/.claudeprompt .
-   ```
 
+   ```text
 2. **Claude Projects reads:**
    - `.claudeprompt` automatically
    - Applies to all conversations in that project
@@ -136,11 +157,12 @@ cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 ### GitHub Copilot Setup
 
 1. **Copy instructions:**
+
    ```bash
    mkdir -p .github
    cp .ai-guardrails/.github/copilot-instructions.md .github/
-   ```
 
+   ```text
 2. **GitHub Copilot reads:**
    - `.github/copilot-instructions.md` automatically
    - Applies to all suggestions
@@ -148,10 +170,11 @@ cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 ### Aider Setup
 
 1. **Copy configuration:**
+
    ```bash
    cp -r .ai-guardrails/.aider .
-   ```
 
+   ```text
 2. **Aider will:**
    - Read configuration automatically
    - Load CONTEXT.md for context
@@ -164,19 +187,24 @@ cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 ### Check Files Are Present
 
 ```bash
+
 # For Cursor
+
 ls -la .cursor/rules/
 
 # For Claude
+
 ls -la CLAUDE.md .claudeprompt
 
 # For Copilot
+
 ls -la .github/copilot-instructions.md
 
 # For Aider
-ls -la .aider/.aider.conf.yml
-```
 
+ls -la .aider/.aider.conf.yml
+
+```text
 ### Test with Your AI Tool
 
 #### Cursor Test
@@ -207,35 +235,42 @@ ls -la .aider/.aider.conf.yml
 ### Example 1: Starting a New Feature
 
 ```bash
+
 # 1. AI assistant reads guardrails automatically
+
 # 2. Ask AI to implement feature
+
 # 3. AI generates code following standards
+
 # 4. Run pre-commit
+
 ./scripts/run-precommit.sh
 
 # 5. Commit
-git commit -m "Add feature X"
-```
 
+git commit -m "Add feature X"
+
+```text
 ### Example 2: Code Review with AI
 
-```
+```text
 Please review this code for:
 1. Security issues (secrets, input validation)
 2. Compliance with standards in CLAUDE.md
 3. Pre-commit compatibility
-```
 
+```text
 ### Example 3: Refactoring
 
-```
+```text
 Please refactor this bash script to follow standards:
+
 - Add set -euo pipefail
 - Quote all variables
 - Add input validation
 - Add clear error messages
-```
 
+```text
 ---
 
 ## 🔧 Troubleshooting
@@ -272,39 +307,48 @@ Please refactor this bash script to follow standards:
 ### If Using Submodule
 
 ```bash
+
 # Update to latest guardrails
+
 git submodule update --remote .ai-guardrails
 
 # Review changes
+
 cd .ai-guardrails
 git log
 
 # Commit the update
+
 cd ..
 git add .ai-guardrails
 git commit -m "Update AI guardrails"
-```
 
+```text
 ### If Using Direct Copy
 
 ```bash
+
 # Pull latest guardrails
+
 cd /tmp
 git clone <guardrails-repo> guardrails
 cd guardrails
 git pull
 
 # Copy updated files
+
 cp -r .cursor your-project/
 cp CLAUDE.md your-project/
+
 # ... etc
 
 # Commit updates
+
 cd your-project
 git add .cursor CLAUDE.md
 git commit -m "Update AI guardrails"
-```
 
+```text
 ---
 
 ## 📊 Integration with Your Project
@@ -314,8 +358,11 @@ git commit -m "Update AI guardrails"
 You can extend the base guardrails:
 
 **Option A: Add project-specific rules**
+
 ```bash
+
 # Create project-specific Cursor rules
+
 cat > .cursor/rules/100_project_specific.mdc << 'EOF'
 ---
 description: Project-specific rules
@@ -329,10 +376,12 @@ globs:
 - Use our custom logging framework
 - Follow our API design patterns
 - ...
-EOF
-```
 
+EOF
+
+```text
 **Option B: Extend CLAUDE.md**
+
 ```markdown
 <!-- At end of CLAUDE.md -->
 
@@ -343,8 +392,8 @@ EOF
 - Use React for frontend
 - PostgreSQL for database
 - FastAPI for backend API
-```
 
+```text
 ### Keep Base Guardrails Clean
 
 - Don't modify base guardrail files directly

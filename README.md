@@ -10,7 +10,8 @@ Universal AI coding assistant configurations and guardrails for professional sof
 
 ## 🎯 What Is This?
 
-**AI Guardrails** provides tool-specific configuration files that teach AI coding assistants (Cursor, Claude, GitHub Copilot, etc.) to follow engineering best practices for:
+**AI Guardrails** provides tool-specific configuration files that teach AI coding assistants
+(Cursor, Claude, GitHub Copilot, etc.) to follow engineering best practices for:
 
 - 🔒 **Security**: Never commit secrets, enforce proper credential handling
 - ✅ **Quality**: Enforce code formatting, linting, and style standards
@@ -24,11 +25,14 @@ Universal AI coding assistant configurations and guardrails for professional sof
 ### For New Projects
 
 ```bash
+
 # Clone into your project
+
 cd your-project
 git clone <this-repo-url> .ai-guardrails
 
 # Copy AI configurations
+
 cp .ai-guardrails/.cursor/ . -r         # For Cursor
 cp .ai-guardrails/CLAUDE.md .           # For Claude Desktop
 cp .ai-guardrails/CONTRIBUTING.md .     # For all contributors
@@ -40,10 +44,13 @@ cp .ai-guardrails/.claudeprompt .       # For Claude Projects
 ### For Existing Projects
 
 ```bash
+
 # Add as a git submodule (recommended)
+
 git submodule add <this-repo-url> .ai-guardrails
 
 # Reference from your project
+
 ln -s .ai-guardrails/.cursor .cursor
 ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ```
@@ -55,6 +62,7 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ### Cursor Rules (Modern .mdc Format)
 
 ```text
+
 .cursor/rules/
 ├── 001_workspace.mdc            # Repository context
 ├── 002_design_principles.mdc    # Core design principles
@@ -67,6 +75,7 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ```
 
 **Features:**
+
 - ✅ Scoped rules (apply only to relevant files)
 - ✅ Prioritized (security rules override others)
 - ✅ Micro-examples (show correct vs incorrect)
@@ -110,6 +119,7 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ### Security (HIGHEST PRIORITY)
 
 **NEVER commit secrets:**
+
 - ❌ API keys, tokens, passwords
 - ❌ Private keys (SSH, TLS)
 - ❌ Cloud credentials (AWS, GCP, Azure)
@@ -119,29 +129,40 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ### Code Quality
 
 **Bash:**
+
 ```bash
+
 #!/usr/bin/env bash
 set -euo pipefail
+
 # Quote all variables
+
 rm -rf "${USER_DIR}/temp"
 ```
 
 **Python:**
+
 ```python
+
 def calculate(value: int) -> float:
     """Type hints required for public functions."""
     return float(value) * 1.5
 ```
 
 **YAML:**
+
 ```yaml
+
 # Use .yaml extension, 2-space indent
+
 log_level: "info"
 retry_count: 3
 ```
 
 **JSON:**
+
 ```json
+
 {
   "enabled": true,
   "timeout": 30
@@ -151,11 +172,14 @@ retry_count: 3
 ### Pre-commit Enforcement
 
 ```bash
+
 # All commits must pass quality checks
+
 ./scripts/run-precommit.sh
 ```
 
 **Checks include:**
+
 - Formatting (auto-fixes many issues)
 - Linting (code quality)
 - Security (secret detection)
@@ -192,6 +216,7 @@ propagated to tool-specific files.
 ### Tool-Specific Optimization
 
 Each AI tool gets an **optimized configuration**:
+
 - **Cursor**: Scoped `.mdc` files with priority system
 - **Claude**: Conversational markdown with checklists
 - **Copilot**: Concise, example-heavy format
@@ -254,6 +279,7 @@ Security is enforced at multiple layers:
 ## 🤝 Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for:
+
 - Setup instructions
 - Coding standards
 - Development workflow
@@ -281,42 +307,48 @@ Apache License 2.0 - See [LICENSE](LICENSE) for details.
 ### Example: Bash Script with Standards
 
 ```bash
+
 #!/usr/bin/env bash
 set -euo pipefail
 
 # Validate input
+
 if [[ -z "${1:-}" ]]; then
   echo "Error: Missing required argument" >&2
   exit 2
 fi
 
 # Quote variables
+
 FILENAME="$1"
 
 # Check file exists
+
 if [[ ! -f "${FILENAME}" ]]; then
   echo "Error: File not found: ${FILENAME}" >&2
   exit 1
 fi
 
 # Process file
+
 echo "Processing: ${FILENAME}"
 ```
 
 ### Example: Python with Type Hints
 
 ```python
+
 from typing import List
 
 def calculate_average(numbers: List[float]) -> float:
     """Calculate the average of a list of numbers.
-    
+
     Args:
         numbers: List of numbers to average
-        
+
     Returns:
         Average value
-        
+
     Raises:
         ValueError: If list is empty
     """
@@ -328,9 +360,11 @@ def calculate_average(numbers: List[float]) -> float:
 ### Example: Proper Secret Handling
 
 ```python
+
 import os
 
 # ✅ CORRECT: Load from environment
+
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
     raise ValueError("OPENAI_API_KEY environment variable required")

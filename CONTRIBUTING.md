@@ -10,6 +10,7 @@ Contributors (both human and AI) must follow these standards.
 ### Quick Start
 
 **You MUST read these files first:**
+
 1. **`CLAUDE.md`** (if you're Claude) - Your operational guardrails
 2. **`.cursor/rules/*.mdc`** (if you're Cursor) - Scoped, prioritized rules
 3. **`CONTEXT.md`** - Canonical standards document
@@ -19,12 +20,14 @@ Contributors (both human and AI) must follow these standards.
 #### 1. Security (HIGHEST PRIORITY)
 
 **NEVER commit secrets:**
+
 - API keys, tokens, passwords, credentials
 - Private keys (`.pem`, `.key`, SSH keys)
 - Cloud provider credentials
 - ANY authentication material
 
 **How to handle secrets:**
+
 - ✅ Store in `.env` files (gitignored)
 - ✅ Provide `.env.example` with placeholders
 - ✅ Load from environment in code
@@ -36,10 +39,13 @@ Contributors (both human and AI) must follow these standards.
 ALL commits must pass pre-commit:
 
 ```bash
+
 # Run before every commit
+
 ./scripts/run-precommit.sh
 
 # Or if that doesn't exist
+
 pre-commit run --all-files
 ```
 
@@ -48,25 +54,32 @@ pre-commit run --all-files
 #### 3. Coding Standards
 
 **Bash:**
+
 ```bash
+
 #!/usr/bin/env bash
 set -euo pipefail
+
 # Quote all variables: "${VAR}"
 ```
 
 **Python:**
+
 ```python
+
 def function_name(arg: str) -> bool:
     """Include type hints and docstrings."""
     pass
 ```
 
 **YAML:**
+
 - Use `.yaml` extension (never `.yml`)
 - 2-space indentation
 - `snake_case` keys
 
 **JSON:**
+
 - 2-space indentation
 - No trailing commas
 - No comments
@@ -74,6 +87,7 @@ def function_name(arg: str) -> bool:
 #### 4. Documentation
 
 When changing code, update:
+
 - README.md (if user-facing changes)
 - Relevant docs/ files
 - Inline comments (explain WHY, not WHAT)
@@ -87,25 +101,32 @@ When changing code, update:
 #### 1. Install Prerequisites
 
 ```bash
+
 # Python 3.11+ required
+
 python3 --version
 
 # Install pre-commit
+
 pip install pre-commit
 ```
 
 #### 2. Clone and Setup
 
 ```bash
+
 # Clone the repository
+
 git clone <repo-url>
 cd Guardrails-AI
 
 # Install pre-commit hooks (REQUIRED)
+
 pre-commit install
 pre-commit install --hook-type commit-msg
 
 # Verify setup
+
 pre-commit run --all-files
 ```
 
@@ -126,13 +147,16 @@ pre-commit run --all-files
 #### 3. Before Committing
 
 ```bash
+
 # Run quality checks
+
 pre-commit run --all-files
 
 # Fix any issues
 # Many are auto-fixed - run again after
 
 # Commit only when all checks pass
+
 git add <files>
 git commit -m "Clear, descriptive message"
 ```
@@ -172,6 +196,7 @@ This repository enforces quality through:
 ### Security Checklist
 
 Before committing ANY file:
+
 - [ ] Contains no secrets or credentials
 - [ ] Secrets are in `.env` (gitignored)
 - [ ] Provided `.env.example` with placeholders
@@ -201,6 +226,7 @@ Before committing ANY file:
 ### Bug Reports
 
 Include:
+
 - Clear description of the issue
 - Steps to reproduce
 - Expected vs actual behavior
@@ -210,6 +236,7 @@ Include:
 ### Feature Requests
 
 Include:
+
 - Problem statement (what problem does this solve?)
 - Proposed solution
 - Alternative approaches considered

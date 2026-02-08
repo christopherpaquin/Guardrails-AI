@@ -44,8 +44,8 @@
 ✅ README.md                                  # Repository overview
 ✅ LICENSE                                    # Apache 2.0
 ✅ .gitignore                                 # Repository ignores
-```
 
+```text
 ---
 
 ## 🏗️ Architecture
@@ -62,8 +62,8 @@ CONTEXT.md (Canonical)
     ├─→ .claudeprompt          (Concise for Projects)
     ├─→ .github/copilot-*.md   (Example-heavy for Copilot)
     └─→ .aider/.aider.conf.yml (YAML config for Aider)
-```
 
+```text
 ### Rule Scoping (Cursor)
 
 Rules apply only to relevant files:
@@ -90,21 +90,25 @@ Rules apply only to relevant files:
 Each rule shows correct vs incorrect patterns:
 
 **Example from `003_bash_standards.mdc`:**
+
 ```markdown
 ❌ WRONG:
+
 ```bash
 rm -rf $USER_DIR/temp
-```
 
+```text
 ✅ CORRECT:
+
 ```bash
 rm -rf "${USER_DIR}/temp"
-```
-```
 
+```text
+```text
 ### 2. Security-First Design
 
 Security rules have **highest priority (100)** and apply to **all files**:
+
 - Never commit secrets
 - Check `.gitignore` before creating files
 - Use `.env` for configuration
@@ -113,6 +117,7 @@ Security rules have **highest priority (100)** and apply to **all files**:
 ### 3. Tool-Native Formats
 
 Each tool gets the format it works best with:
+
 - **Cursor**: `.mdc` with frontmatter, globs, priority
 - **Claude**: Conversational markdown with checklists
 - **Copilot**: Concise with many code examples
@@ -121,10 +126,11 @@ Each tool gets the format it works best with:
 ### 4. Pre-commit Integration
 
 All configs reference pre-commit workflow:
+
 ```bash
 ./scripts/run-precommit.sh  # Must pass before commit
-```
 
+```text
 ---
 
 ## 🎯 How to Use
@@ -132,24 +138,29 @@ All configs reference pre-commit workflow:
 ### Quick Start (Any Project)
 
 ```bash
+
 # Clone guardrails
+
 cd your-project
 git clone <guardrails-url> .ai-guardrails
 
 # Setup for your AI tool:
 
 # For Cursor:
+
 ln -s .ai-guardrails/.cursor .cursor
 
 # For Claude:
+
 ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 
 # For All:
+
 ln -s .ai-guardrails/CONTRIBUTING.md CONTRIBUTING.md
 
 # Done! AI tools will now follow standards.
-```
 
+```text
 ### Verification
 
 **Cursor:**
@@ -175,15 +186,21 @@ ln -s .ai-guardrails/CONTRIBUTING.md CONTRIBUTING.md
 ### Code Quality Improvements
 
 **Before** (no guardrails):
+
 ```bash
+
 # AI might generate:
+
 #!/bin/bash
 rm -rf $DIR/temp  # Unquoted, no error handling
-```
 
+```text
 **After** (with guardrails):
+
 ```bash
+
 # AI will generate:
+
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -193,16 +210,18 @@ if [[ -z "${DIR:-}" ]]; then
 fi
 
 rm -rf "${DIR}/temp"
-```
 
+```text
 ### Security Improvements
 
 **Before**: AI might accidentally:
+
 - Hardcode API keys in code
 - Commit `.env` files
 - Log secret values
 
 **After**: AI will:
+
 - Use environment variables
 - Check `.gitignore` first
 - Provide `.env.example` with placeholders
@@ -213,6 +232,7 @@ rm -rf "${DIR}/temp"
 **Before**: Different AI tools, different standards
 
 **After**: All AI tools follow same standards:
+
 - ✅ Same bash header
 - ✅ Same Python style
 - ✅ Same YAML formatting
@@ -225,10 +245,11 @@ rm -rf "${DIR}/temp"
 ### Updating Standards
 
 1. **Edit canonical source:**
+
    ```bash
    vim CONTEXT.md
-   ```
 
+   ```text
 2. **Update tool-specific files:**
    - Update `.cursor/rules/*.mdc` to match
    - Update `CLAUDE.md` to match
@@ -239,11 +260,12 @@ rm -rf "${DIR}/temp"
    - Verify standards are followed
 
 4. **Commit together:**
+
    ```bash
    git add CONTEXT.md .cursor/ CLAUDE.md
    git commit -m "Update security standards"
-   ```
 
+   ```text
 ### Adding New Tools
 
 To add support for a new AI tool:

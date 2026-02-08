@@ -2,7 +2,6 @@
 
 # Model selection
 model: gpt-4
-
 # Files to read for context
 read:
   - CONTEXT.md
@@ -10,15 +9,12 @@ read:
   - CONTRIBUTING.md
   - README.md
   - .cursor/rules/006_security.mdc
-
 # Pre-commit integration
 lint-cmd: "pre-commit run --all-files"
-
 # Auto-commit behavior
 auto-commits: false
 attribute-commit-message-author: false
 attribute-commit-message-committer: false
-
 # Pre-commit message prompt
 commit-prompt: |
   Ensure all changes comply with standards in CONTEXT.md:
@@ -29,21 +25,15 @@ commit-prompt: |
   - JSON uses 2-space indent, no trailing commas
   - Documentation is updated
   - Pre-commit checks pass
-
 # Git ignore patterns
 gitignore: true
-
 # Show diffs
 show-diffs: true
-
 # Pretty output
 pretty: true
-
 # Map files for better context
 map-tokens: 1024
-
 # Check for repo map updates
 map-refresh: auto
-
 # Voice settings (if using voice)
 voice-language: en
