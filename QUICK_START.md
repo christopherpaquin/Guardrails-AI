@@ -43,6 +43,9 @@ cp -r .ai-guardrails/.cursor .
 cp .ai-guardrails/CLAUDE.md .
 cp .ai-guardrails/.claudeprompt .
 cp .ai-guardrails/CONTRIBUTING.md .
+cp -r .ai-guardrails/.continue .
+cp .ai-guardrails/.windsurfignore .
+cp -r .ai-guardrails/.vscode .
 
 # Run bootstrap to copy infrastructure
 .ai-guardrails/template/bootstrap-guardrails.sh
@@ -136,6 +139,9 @@ git commit -m "password=test123"
 - **Claude**: Comprehensive instructions in `CLAUDE.md`
 - **Copilot**: Optimized format in `.github/copilot-instructions.md`
 - **Aider**: Pre-configured in `.aider/.aider.conf.yml`
+- **Continue.dev**: YAML config with rules and custom prompts
+- **Windsurf**: Context exclusions and VS Code integration
+- **VS Code**: Pre-configured formatters, linters, settings
 
 ### Quality Enforcement
 

@@ -96,6 +96,6 @@ repos:
       - id: pymarkdown
         name: "📝 markdown · Lint with PyMarkdown"
         args: ["--config", "template/.pymarkdown.json", "scan"]
-        exclude: ^(template/(CI_WORKFLOWS|IMPLEMENTATION_COMPLETE|PRE_COMMIT_SETUP_SUMMARY|TEMPLATE_STRUCTURE|USAGE)\.md)$
+        exclude: ^(template/(CI_WORKFLOWS|IMPLEMENTATION_COMPLETE|PRE_COMMIT_SETUP_SUMMARY|TEMPLATE_STRUCTURE|USAGE)|AI_TOOL_CONFIGURATIONS)\.md$
 default_language_version:
   python: python3
