@@ -53,13 +53,13 @@ repos:
     hooks:
       - id: detect-secrets
         name: "🔒 security · Detect secrets (API keys, tokens, credentials)"
-        entry: template/scripts/detect-secrets.sh
+        entry: scripts/detect-secrets.sh
         language: system
         pass_filenames: false
         always_run: false
       - id: check-commit-message
         name: "🔒 security · Check commit message (no secrets, IPs)"
-        entry: template/scripts/check-commit-message.sh
+        entry: scripts/check-commit-message.sh
         language: system
         stages: [commit-msg]
   # Python: Ruff (lint + autofix) and Ruff formatter
@@ -95,6 +95,6 @@ repos:
     hooks:
       - id: pymarkdown
         name: "📝 markdown · Lint with PyMarkdown"
-        args: ["--config", "template/.pymarkdown.json", "scan"]
+        args: ["--config", ".pymarkdown.json", "scan"]
 default_language_version:
   python: python3
