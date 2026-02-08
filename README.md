@@ -27,12 +27,10 @@ Universal AI coding assistant configurations and guardrails for professional sof
 ```bash
 
 # Clone into your project
-
 cd your-project
 git clone <this-repo-url> .ai-guardrails
 
 # Copy AI configurations
-
 cp .ai-guardrails/.cursor/ . -r         # For Cursor
 cp .ai-guardrails/CLAUDE.md .           # For Claude Desktop
 cp .ai-guardrails/CONTRIBUTING.md .     # For all contributors
@@ -46,14 +44,100 @@ cp .ai-guardrails/.claudeprompt .       # For Claude Projects
 ```bash
 
 # Add as a git submodule (recommended)
-
 git submodule add <this-repo-url> .ai-guardrails
 
 # Reference from your project
-
 ln -s .ai-guardrails/.cursor .cursor
 ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ```
+
+---
+
+## 📂 Repository Structure
+
+This repository has two main parts:
+
+### 1. AI Context Files (Root Directory)
+
+These files teach AI tools about your standards. Copy them to your projects:
+
+- **`.cursor/rules/*.mdc`** - Cursor AI rules (8 scoped, prioritized files)
+- **`CLAUDE.md`** - Claude Desktop comprehensive instructions
+- **`.claudeprompt`** - Claude Projects single-line config
+- **`.github/copilot-instructions.md`** - GitHub Copilot format
+- **`.aider/.aider.conf.yml`** - Aider configuration
+- **`CONTEXT.md`** - Canonical standards document (source of truth)
+- **`CONTRIBUTING.md`** - Guidelines for all contributors
+
+### 2. Template Infrastructure (template/ Directory)
+
+Pre-commit hooks, CI/CD workflows, and management scripts. Use the bootstrap script to copy to your project:
+
+```bash
+
+./template/bootstrap-guardrails.sh
+```
+
+**Infrastructure includes:**
+
+- **Pre-commit framework** (20+ quality and security hooks)
+- **CI/CD workflows** (GitHub Actions for testing and security scanning)
+- **Security scripts** (secret detection, commit message validation)
+- **Management scripts** (setup, enable/disable hooks and jobs)
+- **Comprehensive documentation**
+
+See `template/TEMPLATE_STRUCTURE.md` for complete details.
+
+---
+
+## 🛠️ Management Scripts
+
+The template includes powerful management scripts:
+
+### Setup Pre-commit
+
+```bash
+
+./scripts/setup-precommit.sh
+```
+
+Installs and configures pre-commit hooks automatically.
+
+### Manage Hooks
+
+```bash
+
+# List all hooks
+./scripts/manage-precommit-hooks.sh list
+
+# Disable expensive checks during development
+./scripts/manage-precommit-hooks.sh disable shellcheck
+
+# Re-enable later
+./scripts/manage-precommit-hooks.sh enable shellcheck
+
+# Show hook configuration
+./scripts/manage-precommit-hooks.sh show detect-secrets
+```
+
+### Manage CI Jobs
+
+```bash
+
+# List all CI workflows and jobs
+./scripts/manage-ci-jobs.sh list
+
+# Disable test job (if no tests yet)
+./scripts/manage-ci-jobs.sh disable ci.yaml tests
+
+# Enable when ready
+./scripts/manage-ci-jobs.sh enable ci.yaml tests
+
+# Show job configuration
+./scripts/manage-ci-jobs.sh show security-ci.yml gitleaks
+```
+
+See `template/MANAGEMENT_SCRIPTS.md` for complete documentation.
 
 ---
 
@@ -75,7 +159,6 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ```
 
 **Features:**
-
 - ✅ Scoped rules (apply only to relevant files)
 - ✅ Prioritized (security rules override others)
 - ✅ Micro-examples (show correct vs incorrect)
@@ -119,7 +202,6 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 ### Security (HIGHEST PRIORITY)
 
 **NEVER commit secrets:**
-
 - ❌ API keys, tokens, passwords
 - ❌ Private keys (SSH, TLS)
 - ❌ Cloud credentials (AWS, GCP, Azure)
@@ -134,9 +216,7 @@ ln -s .ai-guardrails/CLAUDE.md CLAUDE.md
 
 #!/usr/bin/env bash
 set -euo pipefail
-
 # Quote all variables
-
 rm -rf "${USER_DIR}/temp"
 ```
 
@@ -154,7 +234,6 @@ def calculate(value: int) -> float:
 ```yaml
 
 # Use .yaml extension, 2-space indent
-
 log_level: "info"
 retry_count: 3
 ```
@@ -174,12 +253,10 @@ retry_count: 3
 ```bash
 
 # All commits must pass quality checks
-
 ./scripts/run-precommit.sh
 ```
 
 **Checks include:**
-
 - Formatting (auto-fixes many issues)
 - Linting (code quality)
 - Security (secret detection)
@@ -216,7 +293,6 @@ propagated to tool-specific files.
 ### Tool-Specific Optimization
 
 Each AI tool gets an **optimized configuration**:
-
 - **Cursor**: Scoped `.mdc` files with priority system
 - **Claude**: Conversational markdown with checklists
 - **Copilot**: Concise, example-heavy format
@@ -279,7 +355,6 @@ Security is enforced at multiple layers:
 ## 🤝 Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for:
-
 - Setup instructions
 - Coding standards
 - Development workflow
@@ -312,25 +387,21 @@ Apache License 2.0 - See [LICENSE](LICENSE) for details.
 set -euo pipefail
 
 # Validate input
-
 if [[ -z "${1:-}" ]]; then
   echo "Error: Missing required argument" >&2
   exit 2
 fi
 
 # Quote variables
-
 FILENAME="$1"
 
 # Check file exists
-
 if [[ ! -f "${FILENAME}" ]]; then
   echo "Error: File not found: ${FILENAME}" >&2
   exit 1
 fi
 
 # Process file
-
 echo "Processing: ${FILENAME}"
 ```
 
@@ -364,7 +435,6 @@ def calculate_average(numbers: List[float]) -> float:
 import os
 
 # ✅ CORRECT: Load from environment
-
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
     raise ValueError("OPENAI_API_KEY environment variable required")
