@@ -1,0 +1,45 @@
+---
+description: Repository context and purpose
+priority: 10
+globs:
+  - "**/*"
+---
+
+# Repository: AI Guardrails for Engineering Projects
+
+## Purpose
+
+This repository provides AI coding assistant configurations and guardrails for
+software engineering projects. It contains tool-specific instructions (Cursor, Claude,
+GitHub Copilot, etc.) derived from a canonical set of engineering standards.
+
+## Key Characteristics
+
+- **Governance-first approach**: Documentation as executable instructions
+- **Defense-in-depth security**: Never commit secrets (3-layer protection)
+- **Quality gates**: Pre-commit hooks, CI/CD enforcement
+- **Tool-native configs**: Optimized for each AI assistant
+- **Single source of truth**: All configs derived from CONTEXT.md
+
+## Usage
+
+Include this repository in your projects:
+
+```bash
+# As a git submodule
+git submodule add <repo-url> .ai-guardrails
+
+# Or copy files directly
+cp -r .ai-guardrails/.cursor .
+cp -r .ai-guardrails/CLAUDE.md .
+cp -r .ai-guardrails/CONTRIBUTING.md .
+```
+
+## Supported AI Tools
+
+- ✅ Cursor (via .cursor/rules/*.mdc)
+- ✅ Claude Desktop (via CLAUDE.md)
+- ✅ Claude Projects (via .claudeprompt)
+- ✅ GitHub Copilot (via .github/copilot-instructions.md)
+- ✅ Aider (via .aider/.aider.conf.yml)
+- ✅ Continue.dev (via .vscode/settings.json)

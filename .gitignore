@@ -1,0 +1,28 @@
+# AI Guardrails Repository - .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Aider runtime
+.aider.chat.history.md
+.aider.tags.cache.v3/
+
+# Test artifacts
+artifacts/
