@@ -67,7 +67,9 @@ mkdir -p "${REPO_ROOT}/artifacts"
 
 # Copy files
 echo -e "${GREEN}Copying pre-commit configuration...${NC}"
-cp "${TEMPLATE_DIR}/.pre-commit-config.yaml" "${REPO_ROOT}/"
+# Copy and update paths for project use (template/scripts/ -> scripts/)
+sed 's|template/scripts/|scripts/|g; s|template/.pymarkdown.json|.pymarkdown.json|g; s|template/\(CI_WORKFLOWS\|IMPLEMENTATION_COMPLETE\|PRE_COMMIT_SETUP_SUMMARY\|TEMPLATE_STRUCTURE\|USAGE\)\.md|excluded-template-docs.md|g' \
+  "${TEMPLATE_DIR}/.pre-commit-config.yaml" > "${REPO_ROOT}/.pre-commit-config.yaml"
 cp "${TEMPLATE_DIR}/.pymarkdown.json" "${REPO_ROOT}/"
 
 echo -e "${GREEN}Copying scripts...${NC}"
