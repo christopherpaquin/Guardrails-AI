@@ -93,9 +93,17 @@ if [[ -f "${REPO_ROOT}/.gitignore" ]]; then
   if ! grep -q "^artifacts/" "${REPO_ROOT}/.gitignore"; then
     echo -e "\n# Pre-commit artifacts and logs\nartifacts/\n.pre-commit-cache/" >> "${REPO_ROOT}/.gitignore"
     echo -e "${GREEN}  Added artifacts/ and .pre-commit-cache/ to .gitignore${NC}"
+  else
+    echo -e "${YELLOW}  .gitignore already contains artifacts/, skipping${NC}"
   fi
 else
-  cat > "${REPO_ROOT}/.gitignore" << EOF
+  # Copy comprehensive .gitignore template if available
+  if [[ -f "${TEMPLATE_DIR}/.gitignore.template" ]]; then
+    cp "${TEMPLATE_DIR}/.gitignore.template" "${REPO_ROOT}/.gitignore"
+    echo -e "${GREEN}  Copied comprehensive .gitignore from template${NC}"
+  else
+    # Fallback to basic .gitignore
+    cat > "${REPO_ROOT}/.gitignore" << EOF
 # Pre-commit artifacts and logs
 artifacts/
 .pre-commit-cache/
@@ -118,7 +126,8 @@ build/
 .DS_Store
 Thumbs.db
 EOF
-  echo -e "${GREEN}  Created .gitignore${NC}"
+    echo -e "${GREEN}  Created basic .gitignore${NC}"
+  fi
 fi
 
 # Install pre-commit hooks
