@@ -16,6 +16,51 @@ You are working within a **governed framework** where:
 
 ---
 
+## 📝 IMPORTANT: Maintaining the Work Log
+
+**Before starting any work, read `WORKLOG.md` to understand recent implementation work and avoid repeating failed approaches.**
+
+### When to Update WORKLOG.md
+
+After completing any significant work, update `WORKLOG.md` with:
+
+**Features Added:**
+- Brief description (1-2 lines) of what was built
+- Which files were modified
+
+**Findings & Decisions:**
+- Why certain approaches were chosen
+- Important technical discoveries
+- Performance or compatibility findings
+
+**What Doesn't Work:**
+- Approaches that were tried but failed
+- Why they failed (prevents future re-attempts)
+- Recommended alternatives
+
+### Example Entry
+
+```markdown
+## 2026-02-15
+
+### Features Added
+- Added `.windsurfignore` configuration for context exclusions
+- Created management script for CI job control
+
+### Findings & Decisions
+- Windsurf uses gitignore-style patterns for context filtering
+- CI jobs can be disabled with `if: false` in workflow YAML
+- Management scripts should validate YAML syntax before writing
+
+### What Doesn't Work
+- ❌ Using comments to disable CI jobs - GitHub Actions still parses them
+- ❌ Symlinking .gitignore to .windsurfignore - tools have different requirements
+```
+
+**Keep entries brief and focused on preventing circular work and maintaining context.**
+
+---
+
 ## 🔒 CRITICAL SECURITY RULES (Read First!)
 
 ### 1. NEVER Commit Secrets

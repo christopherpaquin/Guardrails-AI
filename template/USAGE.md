@@ -7,6 +7,7 @@ Complete guide for using AI Guardrails in your projects.
 ## 📋 Table of Contents
 
 - [Installation Methods](#-installation-methods)
+- [Implementation Tracking](#-implementation-tracking)
 - [Per-Tool Setup](#-per-tool-setup)
 - [Verifying Setup](#-verifying-setup)
 - [Usage Examples](#-usage-examples)
@@ -101,6 +102,62 @@ cp /path/to/guardrails/.claudeprompt your-project/
 cp /path/to/guardrails/.github/copilot-instructions.md your-project/.github/
 
 ```text
+---
+
+## 📝 Implementation Tracking
+
+**IMPORTANT:** This framework includes `WORKLOG.md` for tracking AI agent implementation work.
+
+### What is WORKLOG.md?
+
+`WORKLOG.md` is an **implementation tracking log** that prevents circular work and maintains context across AI agent sessions.
+
+**It documents:**
+- Features added (brief summaries)
+- Important findings and decisions
+- What doesn't work (prevents re-trying failed approaches)
+
+### Quick Start with WORKLOG.md
+
+**1. Copy WORKLOG files:**
+
+```bash
+cp .ai-guardrails/WORKLOG.md .
+cp .ai-guardrails/WORKLOG_USAGE.md .
+```
+
+**2. Instruct AI agents:**
+
+When working with AI agents, use prompts like:
+
+```
+"Before starting, read WORKLOG.md to understand recent work."
+
+"Update WORKLOG.md with:
+- What you just implemented
+- Key decisions made
+- Any approaches that didn't work"
+```
+
+**3. Review regularly:**
+
+```bash
+# Check recent entries
+tail -50 WORKLOG.md
+
+# See full log
+cat WORKLOG.md
+```
+
+### Benefits
+
+- ✅ Prevents repeating failed experiments
+- ✅ Maintains context across agent sessions
+- ✅ Reduces hallucination (documented facts to reference)
+- ✅ Faster onboarding for new agents
+
+**For complete documentation, see [`WORKLOG_USAGE.md`](../WORKLOG_USAGE.md)**
+
 ---
 
 ## 🤖 Per-Tool Setup

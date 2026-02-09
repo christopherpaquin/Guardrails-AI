@@ -40,6 +40,8 @@ git clone https://github.com/YOUR_USERNAME/Guardrails-AI.git .ai-guardrails
 
 # Copy AI context files
 cp .ai-guardrails/AGENTS.md .
+cp .ai-guardrails/WORKLOG.md .
+cp .ai-guardrails/WORKLOG_USAGE.md .
 cp .ai-guardrails/CONTEXT.md .
 cp .ai-guardrails/CONTRIBUTING.md .
 cp -r .ai-guardrails/.cursor .
@@ -138,6 +140,8 @@ git commit -m "password=test123"
 ### AI Context Files
 
 - **AGENTS.md**: Workflow instructions for AI agents (commands, testing, PRs)
+- **WORKLOG.md**: Implementation tracking log (features, findings, failed approaches)
+- **WORKLOG_USAGE.md**: Complete guide for using the worklog
 - **CONTEXT.md**: Universal standards (security, quality, documentation)
 - **CONTRIBUTING.md**: Contribution guidelines for humans and AI
 
@@ -178,6 +182,9 @@ git commit -m "password=test123"
 | Document | Purpose |
 |----------|---------|
 | `README.md` | Overview and quick start |
+| `AGENTS.md` | AI agent workflow instructions |
+| `WORKLOG.md` | Implementation tracking log |
+| `WORKLOG_USAGE.md` | How to use the worklog |
 | `CONTEXT.md` | Canonical standards (source of truth) |
 | `CONTRIBUTING.md` | Contribution guidelines |
 | `template/USAGE.md` | Detailed usage guide |
@@ -225,6 +232,7 @@ git commit --no-verify -m "Emergency fix"
 
 ## 🎓 Learn More
 
+- **For AI worklog**: See `WORKLOG_USAGE.md` (how to track implementation work)
 - **For AI tool setup**: See `template/USAGE.md`
 - **For script details**: See `template/MANAGEMENT_SCRIPTS.md`
 - **For CI/CD details**: See `template/CI_WORKFLOWS.md`

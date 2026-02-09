@@ -13,7 +13,13 @@ Contributors (both human and AI) must follow these standards.
 
 1. **`CLAUDE.md`** (if you're Claude) - Your operational guardrails
 2. **`.cursor/rules/*.mdc`** (if you're Cursor) - Scoped, prioritized rules
-3. **`CONTEXT.md`** - Canonical standards document
+3. **`WORKLOG.md`** - Recent implementation work and findings (read FIRST!)
+4. **`CONTEXT.md`** - Canonical standards document
+
+**After completing work:**
+
+- **Update `WORKLOG.md`** with what you built, decisions made, and what doesn't work
+- See `WORKLOG_USAGE.md` for detailed instructions
 
 ### Critical Requirements
 
@@ -88,9 +94,15 @@ def function_name(arg: str) -> bool:
 
 When changing code, update:
 
+- **WORKLOG.md** (brief entry documenting what was done)
 - README.md (if user-facing changes)
 - Relevant docs/ files
 - Inline comments (explain WHY, not WHAT)
+
+**WORKLOG.md entries should include:**
+- Features Added (1-2 lines)
+- Findings & Decisions (why certain approaches were chosen)
+- What Doesn't Work (failed approaches to avoid repeating)
 
 ---
 
@@ -120,6 +132,9 @@ pip install pre-commit
 git clone <repo-url>
 cd Guardrails-AI
 
+# Read recent work (IMPORTANT)
+cat WORKLOG.md
+
 # Install pre-commit hooks (REQUIRED)
 
 pre-commit install
@@ -134,6 +149,7 @@ pre-commit run --all-files
 
 #### 1. Before Making Changes
 
+- **Read `WORKLOG.md`** - Check recent work and findings
 - Read relevant `.cursor/rules/*.mdc` files
 - Check `CONTEXT.md` for detailed standards
 - Understand the existing patterns
@@ -143,10 +159,14 @@ pre-commit run --all-files
 - Follow coding standards strictly
 - Test your changes thoroughly
 - Update documentation
+- **Document work in progress** for complex tasks
 
 #### 3. Before Committing
 
 ```bash
+
+# Update worklog with your changes
+vim WORKLOG.md  # Add entry for today
 
 # Run quality checks
 
@@ -159,6 +179,23 @@ pre-commit run --all-files
 
 git add <files>
 git commit -m "Clear, descriptive message"
+```
+
+**WORKLOG.md Entry Example:**
+```markdown
+## 2026-02-15
+
+### Features Added
+- Implemented user authentication with JWT tokens
+- Added password reset flow via email
+
+### Findings & Decisions
+- JWT refresh tokens stored in httpOnly cookies for XSS protection
+- Email service uses SendGrid API with rate limiting
+
+### What Doesn't Work
+- ❌ Storing tokens in localStorage - vulnerable to XSS
+- ❌ Using nodemailer directly - unreliable without proper queue
 ```
 
 #### 4. Creating Pull Requests
@@ -214,10 +251,13 @@ Before committing ANY file:
 
 ### Documentation Checklist
 
+- [ ] **WORKLOG.md updated** (features, findings, failed approaches)
 - [ ] README.md updated (if needed)
 - [ ] Relevant docs/ files updated
 - [ ] Usage examples provided
 - [ ] Breaking changes documented
+
+**For WORKLOG.md details, see [`WORKLOG_USAGE.md`](WORKLOG_USAGE.md)**
 
 ---
 

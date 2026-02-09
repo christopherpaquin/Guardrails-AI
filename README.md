@@ -30,7 +30,9 @@ cd your-project
 git clone <this-repo-url> .ai-guardrails
 
 # Copy AI configurations
-cp .ai-guardrails/AGENTS.md .            # Workflow instructions (NEW!)
+cp .ai-guardrails/AGENTS.md .            # Workflow instructions
+cp .ai-guardrails/WORKLOG.md .           # Implementation tracking log
+cp .ai-guardrails/WORKLOG_USAGE.md .     # Worklog usage guide
 cp .ai-guardrails/CONTEXT.md .           # Universal standards
 cp .ai-guardrails/CONTRIBUTING.md .      # Guidelines
 cp .ai-guardrails/.cursor/ . -r          # For Cursor
@@ -65,6 +67,8 @@ This repository has two main parts:
 These files teach AI tools about your standards. Copy them to your projects:
 
 - **`AGENTS.md`** - Workflow instructions for AI agents (inspired by [agents.md](https://agents.md))
+- **`WORKLOG.md`** - Implementation tracking log (features, findings, failed approaches)
+- **`WORKLOG_USAGE.md`** - Complete guide for using the worklog
 - **`CONTEXT.md`** - Canonical standards document (source of truth)
 - **`CONTRIBUTING.md`** - Guidelines for all contributors
 
@@ -288,7 +292,8 @@ retry_count: 3
 **Start here:**
 
 1. **AGENTS.md** - Read FIRST for workflow instructions and commands
-2. **CONTEXT.md** - Universal standards (single source of truth)
+2. **WORKLOG.md** - Review recent work and findings (prevents circular debugging)
+3. **CONTEXT.md** - Universal standards (single source of truth)
 
 **Tool-specific configs (auto-discovered):**
 
@@ -302,9 +307,10 @@ retry_count: 3
 ### For Humans
 
 1. **Quick reference**: See `.cursor/rules/*.mdc` for examples
-2. **Detailed standards**: Read `CONTEXT.md`
-3. **Contributing**: Read `CONTRIBUTING.md`
-4. **Setup guide**: Follow Quick Start above
+2. **Implementation tracking**: Read `WORKLOG_USAGE.md` for how to use the worklog
+3. **Detailed standards**: Read `CONTEXT.md`
+4. **Contributing**: Read `CONTRIBUTING.md`
+5. **Setup guide**: Follow Quick Start above
 
 ---
 
@@ -480,6 +486,7 @@ if not api_key:
 |------|-------------|
 | Setup AI for Cursor | Copy `.cursor/rules/` to your project |
 | Setup AI for Claude | Copy `CLAUDE.md` to your project |
+| Track AI work | Use `WORKLOG.md` - see `WORKLOG_USAGE.md` |
 | See standards | Read `CONTEXT.md` |
 | Contribute | Read `CONTRIBUTING.md` |
 | Report issues | Open GitHub issue |

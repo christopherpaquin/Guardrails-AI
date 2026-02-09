@@ -48,6 +48,56 @@ provides project-specific workflow guidance.
    - Add your tech stack and commands
    - Document your workflows
    - Add project-specific sections
+
+---
+
+### WORKLOG.md
+
+**Configuration**: `WORKLOG.md` (root level)
+
+**Format**: Markdown log with dated entries
+
+**Purpose**: Implementation tracking to prevent circular work and maintain context
+
+**Features**:
+- Tracks features added, decisions made, and failed approaches
+- Prevents AI agents from repeating failed experiments
+- Maintains context across multiple agent sessions
+- Reduces hallucination by providing documented facts
+
+**Content**:
+- **Features Added**: Brief summaries of what was built
+- **Findings & Decisions**: Why certain approaches were chosen
+- **What Doesn't Work**: Failed approaches to avoid re-trying
+
+**How to use**:
+1. Copy `WORKLOG.md` and `WORKLOG_USAGE.md` to your project
+2. Instruct AI agents to:
+   - Read `WORKLOG.md` before starting work
+   - Update it after completing significant work
+3. Keep entries brief (1-3 lines per item)
+4. Archive old entries if file exceeds 500 lines
+
+**Example entry**:
+```markdown
+## 2026-02-15
+
+### Features Added
+- Implemented JWT authentication with refresh tokens
+- Added rate limiting middleware using Redis
+
+### Findings & Decisions
+- Redis 10x faster than database for rate limit checks
+- Refresh tokens stored in httpOnly cookies for XSS protection
+
+### What Doesn't Work
+- ❌ Storing tokens in localStorage - vulnerable to XSS
+- ❌ Database queries for auth checks - too slow (200ms vs 2ms)
+```
+
+**AI agent instructions**: All major AI configs (AGENTS.md, CLAUDE.md, .cursor/rules/001_workspace.mdc) include instructions to use WORKLOG.md
+
+**Documentation**: See `WORKLOG_USAGE.md` for complete guide
 3. Keep it updated as your project evolves
 4. AI agents read it alongside tool-specific configs
 

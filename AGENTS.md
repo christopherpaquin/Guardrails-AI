@@ -13,6 +13,7 @@ to maintain consistency and quality.
 ```text
 Root Directory (AI Context Files):
 ├── AGENTS.md              # This file - workflow instructions for agents
+├── WORKLOG.md             # Implementation tracking and findings log
 ├── CONTEXT.md             # Universal standards (single source of truth)
 ├── CONTRIBUTING.md        # Contribution guidelines
 ├── README.md              # Overview and quick start
@@ -48,15 +49,94 @@ Root Directory (AI Context Files):
 **When first working on this repository, read in this order:**
 
 1. **AGENTS.md** (this file) - Learn workflow and commands
-2. **CONTEXT.md** - Understand universal standards (CRITICAL - read fully)
-3. **CONTRIBUTING.md** - Learn contribution process
-4. **template/TEMPLATE_STRUCTURE.md** - Understand template design
+2. **WORKLOG.md** - Review recent implementation work and findings (IMPORTANT - read first!)
+3. **CONTEXT.md** - Understand universal standards (CRITICAL - read fully)
+4. **CONTRIBUTING.md** - Learn contribution process
+5. **template/TEMPLATE_STRUCTURE.md** - Understand template design
 
 **For specific tasks:**
 - Adding AI tool support → Read `AI_TOOL_CONFIGURATIONS.md`
 - Working with pre-commit → Read `template/PRE_COMMIT_SETUP_SUMMARY.md`
 - Working with CI/CD → Read `template/CI_WORKFLOWS.md`
 - Creating scripts → Read `template/MANAGEMENT_SCRIPTS.md`
+
+---
+
+## 2.1 Maintaining the Work Log
+
+**IMPORTANT:** When working on this repository, maintain `WORKLOG.md` to track implementation progress and prevent circular work.
+
+### When to Update WORKLOG.md
+
+Update the worklog when you:
+- ✅ Add new features or functionality
+- ✅ Make significant implementation decisions
+- ✅ Discover what works or doesn't work
+- ✅ Complete a complex task
+- ✅ Find solutions to tricky problems
+
+### What to Document
+
+Keep entries brief (1-3 lines each):
+
+**Features Added:**
+- What was built or changed
+- Which files were affected
+
+**Findings & Decisions:**
+- Why certain approaches were chosen
+- Important discoveries or insights
+- Technical decisions and rationale
+
+**What Doesn't Work:**
+- Approaches that were tried but failed
+- Why they failed (saves future time)
+- Alternative approaches to try instead
+
+### Example Worklog Entry
+
+```markdown
+## 2026-02-15
+
+### Features Added
+- Added semantic search support to pre-commit hook detection
+- Created `scripts/analyze-hooks.sh` for hook performance metrics
+
+### Findings & Decisions
+- Ripgrep is 10x faster than grep for large repos - use `rg` in all scripts
+- YAML parsing with yq is more reliable than awk for complex queries
+- Hook execution time should be <2s for good developer experience
+
+### What Doesn't Work
+- ❌ Using Python for pre-commit hooks - too slow to initialize interpreter
+- ❌ Regex-only secret detection - high false positive rate
+- ❌ Global git hooks in ~/.git-templates - conflicts with repo-specific hooks
+```
+
+### Workflow
+
+```bash
+# 1. Start new work - read the worklog first
+cat WORKLOG.md
+
+# 2. Do your work
+# ... implement features, fix bugs, etc ...
+
+# 3. Before committing - update the worklog
+vim WORKLOG.md  # Add entry for today's date
+
+# 4. Commit with both code and worklog updates
+git add .
+git commit -m "feat: add new feature
+
+Updated WORKLOG.md with implementation details."
+```
+
+**Why this matters:**
+- Prevents re-trying failed approaches
+- Maintains context across agent sessions
+- Helps new agents get up to speed quickly
+- Documents tribal knowledge
 
 ---
 

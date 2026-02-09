@@ -13,6 +13,20 @@ This repository provides AI coding assistant configurations and guardrails for
 software engineering projects. It contains tool-specific instructions (Cursor, Claude,
 GitHub Copilot, etc.) derived from a canonical set of engineering standards.
 
+## IMPORTANT: Read WORKLOG.md First
+
+**Before starting any work, read `WORKLOG.md`** to understand recent implementation
+work, decisions made, and approaches that didn't work. This prevents circular work
+and maintains context across agent sessions.
+
+**After completing significant work, update `WORKLOG.md`** with:
+- Features added (brief description)
+- Findings and decisions (why certain approaches were chosen)
+- What doesn't work (failed approaches to avoid re-trying)
+
+Keep entries brief (1-3 lines each). This maintains continuity and prevents
+repeating failed experiments.
+
 ## Key Characteristics
 
 - **Governance-first approach**: Documentation as executable instructions

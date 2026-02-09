@@ -46,6 +46,7 @@ echo "This script will copy pre-commit infrastructure from template/ to your pro
 echo ""
 echo -e "${YELLOW}The following will be copied:${NC}"
 echo "  - Workflow instructions (AGENTS.md - template for your project)"
+echo "  - Implementation tracking (WORKLOG.md - template for tracking work)"
 echo "  - Pre-commit configuration (.pre-commit-config.yaml)"
 echo "  - PyMarkdown configuration (.pymarkdown.json)"
 echo "  - Security scripts (scripts/detect-secrets.sh, scripts/check-commit-message.sh)"
@@ -76,6 +77,48 @@ elif [[ -f "${REPO_ROOT}/AGENTS.md" ]]; then
   echo -e "${YELLOW}  AGENTS.md already exists, skipping${NC}"
 else
   echo -e "${YELLOW}  AGENTS.md.template not found, skipping${NC}"
+fi
+
+# Copy WORKLOG.md template
+echo -e "${GREEN}Copying WORKLOG.md template...${NC}"
+if [[ -f "${REPO_ROOT}/../WORKLOG.md" ]] && [[ ! -f "${REPO_ROOT}/WORKLOG.md" ]]; then
+  cp "${REPO_ROOT}/../WORKLOG.md" "${REPO_ROOT}/WORKLOG.md"
+  echo -e "${GREEN}  Copied WORKLOG.md template${NC}"
+  echo -e "${YELLOW}  ⚠️  AI agents will use this to track implementation work${NC}"
+elif [[ -f "${REPO_ROOT}/WORKLOG.md" ]]; then
+  echo -e "${YELLOW}  WORKLOG.md already exists, skipping${NC}"
+else
+  # Create basic WORKLOG.md if template not found
+  cat > "${REPO_ROOT}/WORKLOG.md" << 'EOF'
+# Implementation Work Log
+
+**Purpose:** Track features added, implementation decisions, and findings to prevent circular work and maintain context for AI agents.
+
+**Instructions for AI Agents:**
+- Update this file whenever you add features, make significant changes, or discover important findings
+- Keep entries brief (1-3 lines per item)
+- Focus on WHAT was done and WHY certain approaches work or don't work
+
+---
+
+## YYYY-MM-DD
+
+### Features Added
+- Feature or change description
+
+### Findings & Decisions
+- Important discoveries or decisions made
+- Why certain approaches were chosen
+
+### What Doesn't Work
+- Approaches that were tried but failed
+- Saves time by preventing re-attempts
+
+---
+
+_See WORKLOG_USAGE.md for detailed usage instructions._
+EOF
+  echo -e "${GREEN}  Created basic WORKLOG.md${NC}"
 fi
 
 # Copy files
@@ -167,20 +210,26 @@ echo "     - Replace [bracketed placeholders] with actual values"
 echo "     - Add project-specific commands and workflows"
 echo "     - Remove sections that don't apply"
 echo ""
-echo "  2. Install pre-commit (if not already installed):"
+echo "  2. Review WORKLOG.md setup:"
+echo "     - Read WORKLOG_USAGE.md for detailed instructions"
+echo "     - Instruct AI agents to update WORKLOG.md after completing work"
+echo "     - Prevents circular debugging and maintains context"
+echo ""
+echo "  3. Install pre-commit (if not already installed):"
 echo "     pip install pre-commit"
 echo ""
-echo "  3. Install development dependencies:"
+echo "  4. Install development dependencies:"
 echo "     pip install -r requirements-dev.txt"
 echo ""
-echo "  4. Run pre-commit on all files:"
+echo "  5. Run pre-commit on all files:"
 echo "     pre-commit run --all-files"
 echo ""
-echo "  5. Commit the changes:"
+echo "  6. Commit the changes:"
 echo "     git add -A"
 echo "     git commit -m \"Add AI Guardrails pre-commit infrastructure\""
 echo ""
 echo "For more information, see:"
+echo "  - WORKLOG_USAGE.md - How to use implementation tracking"
 echo "  - ${TEMPLATE_DIR}/PRE_COMMIT_SETUP_SUMMARY.md"
 echo "  - CONTRIBUTING.md"
 echo ""
