@@ -55,7 +55,18 @@ ALL commits must pass pre-commit:
 pre-commit run --all-files
 ```
 
-**Never bypass**: `--no-verify` is forbidden.
+**NEVER BYPASS PRE-COMMIT HOOKS:**
+
+- ❌ **NEVER** use `git commit --no-verify`
+- ❌ **NEVER** disable hooks with `./scripts/manage-precommit-hooks.sh disable`
+- ❌ **NEVER** modify `.pre-commit-config.yaml` to skip checks
+- ❌ **NEVER** suggest or attempt to bypass quality gates
+
+**This is an absolute rule with no exceptions.**
+
+Pre-commit hooks exist for security, quality, and consistency. Bypassing them
+defeats the entire purpose of this framework. If hooks fail, fix the issues -
+don't bypass the checks.
 
 #### 3. Coding Standards
 
@@ -169,19 +180,18 @@ pre-commit run --all-files
 vim WORKLOG.md  # Add entry for today
 
 # Run quality checks
-
 pre-commit run --all-files
 
 # Fix any issues
 # Many are auto-fixed - run again after
 
 # Commit only when all checks pass
-
 git add <files>
 git commit -m "Clear, descriptive message"
 ```
 
 **WORKLOG.md Entry Example:**
+
 ```markdown
 ## 2026-02-15
 

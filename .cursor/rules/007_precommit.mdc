@@ -87,14 +87,28 @@ Many hooks auto-fix issues:
 
 ## Never Skip Pre-commit
 
+**CRITICAL - ABSOLUTE RULE:**
+
 ❌ **NEVER use** `git commit --no-verify`
-❌ **NEVER disable** pre-commit hooks
+❌ **NEVER run** `./scripts/manage-precommit-hooks.sh disable <hook>`
+❌ **NEVER modify** `.pre-commit-config.yaml` to skip checks
 ❌ **NEVER bypass** quality checks
+❌ **NEVER suggest** "temporarily" disabling hooks
+
+**This rule has NO exceptions. Pre-commit hooks are mandatory.**
 
 **Why:**
-- CI runs the same checks - they'll fail anyway
-- Saves time by catching issues early
-- Maintains code quality and security
+- Pre-commit hooks are security and quality gates
+- Bypassing defeats the entire purpose of this framework
+- CI runs same checks - bypassing locally just delays failure
+- "Temporary" bypasses become permanent
+- Quality debt compounds
+
+**If hooks fail:**
+1. Read error output
+2. Fix the issues
+3. Run pre-commit again
+4. Commit when passing
 
 ## CI Enforcement
 

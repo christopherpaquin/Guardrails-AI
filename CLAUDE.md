@@ -186,13 +186,46 @@ Before suggesting any commit:
 
 4. **Only commit when ALL checks pass**
 
-### Never Suggest Bypassing Pre-commit
+### Never Bypass Pre-commit - ABSOLUTE RULE
 
-❌ **NEVER suggest**: `git commit --no-verify`
-❌ **NEVER suggest**: Disabling hooks
-❌ **NEVER suggest**: Bypassing checks
+**CRITICAL: This is a mandatory, absolute rule with no exceptions.**
 
-**Why:** CI runs the same checks - they'll fail anyway. Better to catch issues early.
+❌ **NEVER use**: `git commit --no-verify`
+❌ **NEVER run**: `./scripts/manage-precommit-hooks.sh disable <hook>`
+❌ **NEVER modify**: `.pre-commit-config.yaml` to skip checks
+❌ **NEVER suggest**: Disabling hooks "temporarily"
+❌ **NEVER bypass**: Quality gates for any reason
+
+**Why this is absolute:**
+- Pre-commit hooks are mandatory security and quality gates
+- Bypassing them defeats the entire purpose of this framework
+- CI runs the same checks - you're just delaying the problem
+- "Temporary" bypasses often become permanent
+- Quality issues compound when allowed to slip through
+
+**If pre-commit fails:**
+1. ✅ Read error messages carefully
+2. ✅ Fix the actual issues identified
+3. ✅ Run pre-commit again to verify
+4. ✅ Commit only when ALL checks pass
+
+**What NOT to do:**
+
+```bash
+# ❌ WRONG - Never disable hooks to bypass checks
+./scripts/manage-precommit-hooks.sh disable pymarkdown
+git commit --no-verify -m "bypassing checks"
+```
+
+**What TO do:**
+
+```bash
+# ✅ CORRECT - Fix the issues
+pre-commit run --all-files  # See failures
+# Fix the issues in the files
+pre-commit run --all-files  # Verify fixed
+git commit -m "proper commit"
+```
 
 ---
 

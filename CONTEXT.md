@@ -531,6 +531,35 @@ AI agents must execute pre-commit using the repository helper script:
 ./scripts/run-precommit.sh
 ```
 
+**CRITICAL: NEVER Disable Pre-commit Hooks**
+
+AI agents must NEVER disable or bypass pre-commit hooks under ANY circumstances:
+
+- ❌ **NEVER** use `git commit --no-verify`
+- ❌ **NEVER** use `./scripts/manage-precommit-hooks.sh disable`
+- ❌ **NEVER** modify `.pre-commit-config.yaml` to skip checks
+- ❌ **NEVER** suggest bypassing quality gates "temporarily"
+
+**Why this rule is absolute:**
+
+- Pre-commit hooks exist for security, quality, and consistency
+- Bypassing them defeats the entire purpose of this framework
+- "Temporary" bypasses often become permanent
+- CI will run the same checks - bypassing locally just delays the problem
+- Quality issues compound when allowed to slip through
+
+**If pre-commit fails:**
+
+1. ✅ Read the error messages carefully
+2. ✅ Fix the actual issues identified
+3. ✅ Run pre-commit again to verify fixes
+4. ✅ Only commit when all checks pass
+
+**The ONLY acceptable exception:**
+
+Emergency production fixes approved by repository owner with explicit written permission
+and documented justification in the commit message. This should be extremely rare.
+
 **Secret Detection**: The pre-commit hooks include `scripts/detect-secrets.sh` which
 automatically scans all staged files for secrets, API keys, and credentials. If secrets
 are detected, the commit will be blocked. AI agents must:

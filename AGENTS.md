@@ -690,9 +690,17 @@ pre-commit run <hook-id> --all-files --verbose
 # Check hook configuration
 ./template/scripts/manage-precommit-hooks.sh show <hook-id>
 
-# Temporarily disable to debug (re-enable before commit!)
-./template/scripts/manage-precommit-hooks.sh disable <hook-id>
+# Fix the actual issues identified by the hook
+# DO NOT disable the hook to bypass the check
 ```
+
+**CRITICAL: NEVER disable pre-commit hooks to bypass failures.**
+
+The management script `manage-precommit-hooks.sh` exists for development workflow
+optimization (e.g., disabling slow hooks during rapid iteration), but hooks must
+be re-enabled before committing.
+
+**Better approach: Fix the issues rather than bypass the checks.**
 
 ### Problem: Secret detected in commit
 
