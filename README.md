@@ -3,9 +3,10 @@
 Universal AI coding assistant configurations and guardrails for professional software engineering.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Powered by Guardrails AI](https://img.shields.io/badge/powered%20by-Guardrails%20AI-8a2be2?style=flat&logo=shield)](https://guardrailsai.dev/)
 [![AI-Friendly](https://img.shields.io/badge/AI-Cursor%20%7C%20Claude%20%7C%20Copilot-green.svg)](CLAUDE.md)
 [![Quality](https://img.shields.io/badge/quality-enforced-brightgreen.svg)](.pre-commit-config.yaml)
-[![Powered by Guardrails AI](https://img.shields.io/badge/powered%20by-Guardrails%20AI-8a2be2?style=flat&logo=shield)](https://guardrailsai.dev/)
+
 
 ---
 
